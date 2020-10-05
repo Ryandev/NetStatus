@@ -5,6 +5,8 @@ import AdditionalInfoRow from "./AdditionalInfoRow";
 import ConnectionLost from "./ConnectionLost";
 import {Grid as styling} from "../constants/styling";
 import threshold from "../constants/threshold";
+import {status as statusContants} from  '../constants/statusrow';
+
 
 function Grid(props) {
     if (props.showConnectionLost) 
@@ -36,40 +38,40 @@ const mapStateToProps = (state) => {
         name : "LATENCY",
         value : Math.round(state.SpeedTest.latency ?? -1) + "ms",
         status : (state.SpeedTest.latency ?? threshold.Settings.latency.error) >= threshold.Settings.latency.error
-            ? "bad"
+            ? statusContants.bad
             : state.SpeedTest.latency > threshold.Settings.latency.warning
-                ? "warning"
-                : "good"
+                ? statusContants.warn
+                : statusContants.good
     };
 
     const jitterProps = {
         name : "JITTER",
         value : Math.round(state.SpeedTest.jitter ?? -1) + "ms",
         status : (state.SpeedTest.jitter ?? threshold.Settings.jitter.error) >= threshold.Settings.jitter.error
-            ? "bad"
+            ? statusContants.bad
             : state.SpeedTest.jitter > threshold.Settings.jitter.warning
-                ? "warning"
-                : "good"
+                ? statusContants.warn
+                : statusContants.good
     };
 
     const ulProps = {
         name : "UPLOAD",
         value : Math.round(state.SpeedTest.uploadSpeed ?? -1) + "mbit/s",
         status : state.SpeedTest.uploadSpeed <= threshold.Settings.upload.error
-            ? "bad"
+            ? statusContants.bad
             : state.SpeedTest.uploadSpeed < threshold.Settings.upload.warning
-                ? "warning"
-                : "good"
+                ? statusContants.warn
+                : statusContants.good
     };
 
     const dlProps = {
         name : "DOWNLOAD",
         value : Math.round(state.SpeedTest.downloadSpeed ?? -1) + "mbit/s",
         status : state.SpeedTest.downloadSpeed < threshold.Settings.download.error
-            ? "bad"
+            ? statusContants.bad
             : state.SpeedTest.downloadSpeed < threshold.Settings.download.warning
-                ? "warning"
-                : "good"
+                ? statusContants.warn
+                : statusContants.good
     };
 
     return {

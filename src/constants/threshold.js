@@ -2,7 +2,7 @@ import env from '../lib/env';
 
 const DEFAULTS = {
     UPLOAD: {
-        WARNING: 8,
+        WARNING: 4,
         ERROR: 1
     },
     DOWNLOAD: {
@@ -10,12 +10,12 @@ const DEFAULTS = {
         ERROR: 1
     },
     LATENCY: {
-        WARNING: 20,
-        ERROR: 200
+        WARNING: 40,
+        ERROR: 100
     },
     JITTER: {
-        WARNING: 20,
-        ERROR: 200
+        WARNING: 50,
+        ERROR: 100
     }
 };
 

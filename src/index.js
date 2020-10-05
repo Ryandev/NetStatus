@@ -17,15 +17,16 @@ import log from './lib/log';
 const providerStore = store();
 
 function updateNetworkConnectionStatus() {
-	log.info('online status changed to: ' + (navigator.onLine ? 'online' : 'offline'));
+	const isOnline = navigator.onLine;
+	log.info('online status changed to: ' + (isOnline ? 'online' : 'offline'));
 
-    var processor = actions.actionProcessorForEvent(navigator.onLine
+    var processor = actions.actionProcessorForEvent(isOnline
         ? actions.types.INTERNETSTATUS.ONLINE
         : actions.types.INTERNETSTATUS.OFFLINE);
 
 		providerStore.dispatch(processor());
 
-	if ( navigator.onLine ) { 
+	if ( isOnline ) { 
 		log.info('Starting net-speed check after re-establishing connection');
 		startNetSpeedCheck(); 
 	}

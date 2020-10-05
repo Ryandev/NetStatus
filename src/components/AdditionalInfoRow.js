@@ -3,12 +3,10 @@ import {connect} from "react-redux";
 import constants from '../constants';
 import {AdditionalInfoRow as styling} from '../constants/styling';
 import {date as dateUtil} from '../lib';
-
+import icon from '../lib/icon';
 
 function InfoDisplayRow(props) {
-    const iconLeft = props.showIconLeft
-        ? <i className={["fa", props.iconLeft].join(" ")}></i>
-        : '';
+    const iconLeft = (props.showIconLeft ? icon.drawableComponentForIcon(props.iconLeft) : '')
     return (
         <div style={styling.container.primary} className="row">
             <div style={styling.colLeft} className="col-xs-3">
@@ -36,7 +34,7 @@ class AdditionalInfoRow extends React.Component {
     render() {
         return InfoDisplayRow({
             showIconLeft: this.props.isTestRunning,
-            iconLeft: 'fa-wifi',
+            iconLeft: constants.icon.name.wifi,
             textLeft: this.props.isTestRunning
                 ? ''
                 : dateUtil.describeDifferenceBetweenDates(this.props.dateOfLastTest, new Date()),

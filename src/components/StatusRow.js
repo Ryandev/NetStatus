@@ -1,15 +1,21 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {StatusRow as styling} from '../constants/styling';
+import {status} from '../constants/statusrow';
+import {name as iconType} from '../constants/icon';
+import icon from '../lib/icon';
+import log from '../lib/log';
+
 
 function StatusRow(props) {
+    const iconDrawable = icon.drawableComponentForIcon(props.icon);
     return (
         <div
             key='statusrow-container'
             style={mapPropsToStyling(props, 'statusrow-container')}
             className="row alert">
             <div className="" role="alert">
-                <i className={["far", props.fontAwesomeClassName].join(" ")}></i>
+                {iconDrawable}
                 &nbsp;
                 <span id="status-name">{props.name}</span>
                 &nbsp;
@@ -27,9 +33,9 @@ const mapPropsToStyling = (props, elementKey) => {
         default:
             Object.assign(elemStyle, 
               styling.container.primary, 
-              props.status === "good" && styling.container.statusGood, 
-              props.status === "warning" && styling.container.statusWarning, 
-              props.status === "bad" && styling.container.statusBad);
+              props.status === status.good && styling.container.statusGood, 
+              props.status === status.warn && styling.container.statusWarning, 
+              props.status === status.bad && styling.container.statusBad);
             break;
     }
 
@@ -38,23 +44,33 @@ const mapPropsToStyling = (props, elementKey) => {
 
 const mapStateToProps = (stateGlobal, props) => {
     var returnProps = {
-        ...props
+        ...props,
     };
 
-    switch (props.status) {
-        case "good":
-            returnProps.fontAwesomeClassName = 'fa-check-circle';
-            break;
+    const iconNameForStatus = (statusVal) => {
+        var iconName = '';
 
-        case "warning":
-            returnProps.fontAwesomeClassName = 'fa-question-circle';
-            break;
+        switch (statusVal) {
+            case status.good:
+                iconName = iconType.tickCircle;
+                break;
 
-        case "bad":
-        default:
-            returnProps.fontAwesomeClassName = 'fa-exclamation-triangle';
-            break;
+            case status.warn:
+                iconName = iconType.questionMarkCircle;
+                break;
+
+            case status.bad:
+                iconName = iconType.exclamationTriangle;
+                break;
+
+            default:
+                log.error('Unrecognised status: ' + statusVal);
+        }
+
+        return iconName; 
     }
+
+    returnProps.icon = iconNameForStatus(props.status);
 
     return returnProps
 };
