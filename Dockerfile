@@ -1,12 +1,23 @@
-FROM node:12
+FROM node:15.0.1-alpine3.11
+  
+# set working directory
+WORKDIR /app
 
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package*.json ./
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
 
-#use npm install if debug
+RUN apk add --no-cache --virtual .gyp \
+        python \
+        make \
+        g++
 RUN npm ci --only=production
+RUn apk del .gyp
+
+RUN npm install react-scripts@3.4.1 -g
 
 #Copy all src
 COPY . .
