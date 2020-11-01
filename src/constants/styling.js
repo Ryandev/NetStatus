@@ -29,14 +29,14 @@ const ConnectionLost = {
         fontFamily: 'Inconsolata'
     },
     row: {
-        fontSize: '12vmin',
+        fontSize: '12vh',
         textAlign: 'center',
         color: '#fff',
         height: '30%',
         width: '100%'
     },
     icon: {
-        fontSize: '26vmin',
+        fontSize: '26vh',
         textAlign: 'center',
         color: '#fff'
     }
@@ -48,7 +48,8 @@ const Grid = {
             backgroundColor: '#000',
             paddingLeft: '0px',
             paddingRight: '0px',
-            paddingTop: '4vmin',
+            paddingTop: '6vh',
+            paddingBottom: '0vh',
             marginLeft: '0',
             marginRight: '0',
             width: '100%',
@@ -62,13 +63,15 @@ const StatusRow = {
     container: {
         primary: {
             width: '100%',
+            marginTop: '0px',
+            marginBottom: '5vh',
             marginLeft: '0px',
             marginRight: '0px',
             borderRadius: '0px',
             padding: '0px',
             paddingLeft: '5%',
-            height: '15vmin',
-            fontSize: '10vmin',
+            height: '15vh',
+            fontSize: '10vh',
             fontFamily: 'Inconsolata',
             overflow: 'hidden',
             textOverflow: 'hidden',
@@ -104,8 +107,8 @@ const AdditionalInfoRow = {
             fontSize: '10vmin',
             color: '#fff',
             overflow: 'hidden',
-            paddingLeft: '4vmin',
-            paddingRight: '0vmin'
+            paddingLeft: '4vw',
+            paddingRight: '0px'
         }
     },
     colLeft: {
