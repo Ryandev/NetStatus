@@ -1,5 +1,6 @@
 import logging from './logging';
 import speedtest from './speedtest';
+import ping from './ping';
 import * as styling from './styling';
 import * as threshold from './threshold';
 import * as statusrow from './statusrow';
@@ -14,4 +15,5 @@ export default {
     styling,
     threshold,
     view,
+    ping,
 };

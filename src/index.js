@@ -13,10 +13,11 @@ import constants from './constants';
 import App from './App';
 import {testRunner as runner} from './lib';
 import log from './lib/log';
+import reachable from './lib/reachable';
 
 const providerStore = store();
 
-function updateNetworkConnectionStatus() {
+function updateNavigatorOnline() {
 	const isOnline = navigator.onLine;
 	log.info('online status changed to: ' + (isOnline ? 'online' : 'offline'));
 
@@ -30,6 +31,21 @@ function updateNetworkConnectionStatus() {
 		log.info('Starting net-speed check after re-establishing connection');
 		startNetSpeedCheck(); 
 	}
+}
+
+function startNetPingCheck() {
+	if ( !navigator.onLine ) { log.warn('offline, cannot run speedtest request'); return; }
+	if ( window.speedRunner ) { log.info('already running speed test, ignoring until after'); return; }
+
+	const fetchIdx = parseInt(Math.random() * constants.ping.servers.length);
+	const website = constants.ping.servers[fetchIdx];
+	reachable.canReach(website, function(result){
+		var processor = actions.actionProcessorForEvent(result.isOnline()
+			? actions.types.INTERNETSTATUS.ONLINE
+			: actions.types.INTERNETSTATUS.OFFLINE);
+
+		providerStore.dispatch(processor());
+	});
 }
 
 function startNetSpeedCheck() {
@@ -61,17 +77,21 @@ function startNetSpeedCheck() {
         });
 }
 
-window.addEventListener('load', function() {
-	window.addEventListener('online',  updateNetworkConnectionStatus);
-	window.addEventListener('offline', updateNetworkConnectionStatus);
-	updateNetworkConnectionStatus();
+const windowLoadCb = function() {
+	window.addEventListener('online',  updateNavigatorOnline);
+	window.addEventListener('offline', updateNavigatorOnline);
+	updateNavigatorOnline();
 	startNetSpeedCheck();
-});
+	window.removeEventListener('load', windowLoadCb);
+};
 
+window.addEventListener('load', windowLoadCb);
+
+setInterval(startNetPingCheck, Math.max(constants.ping.testInterval, 5) * 1000);
 setInterval(startNetSpeedCheck, Math.max(constants.speedtest.testInterval, 60) * 1000);
 
 ReactDOM.render(
     <Provider store={providerStore}>
-        <App/>
+        <App />
 	</Provider>, 
 	document.getElementById('root'));
