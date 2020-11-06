@@ -130,8 +130,9 @@ function OnlineStatus() {
     this.dateWasLastOnline = null;
 
     this.updateWithData = function (newStatus) {
+        const wasOnline = this.isOnline;
         this.isOnline = newStatus;
-        if (this.isOnline) {
+        if (!this.isOnline && wasOnline) {
             this.dateWasLastOnline = new Date();
         }
     }

@@ -34,12 +34,12 @@ function reducer(state = _initialState(), action) {
     switch (action.type) {
         case actions.types.INTERNETSTATUS.ONLINE:
             stateReturn = updateInetStatus(stateReturn, true);
-			log.info('Processed event: ' + action.type + ', to: ' + JSON.stringify(stateReturn));
+            log.info('Processed event: ' + action.type + ', to: ' + JSON.stringify(stateReturn));
             break;
 
         case actions.types.INTERNETSTATUS.OFFLINE:
             stateReturn = updateInetStatus(stateReturn, false);
-			log.info('Processed event: ' + action.type + ', to: ' + JSON.stringify(stateReturn));
+            log.info('Processed event: ' + action.type + ', to: ' + JSON.stringify(stateReturn));
             break;
 
         default:

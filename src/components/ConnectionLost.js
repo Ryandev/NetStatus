@@ -6,7 +6,6 @@ import icon from '../lib/icon';
 
 
 function ConnectionLost(props) {
-    const plugIcon = icon.drawableComponentForIcon(constants.icon.name.plug);
     return (
         <div
             key="connectionlost-container"
@@ -15,14 +14,22 @@ function ConnectionLost(props) {
             <div style={styling.row} className="row">
                 <div style={styling.col} className="col-xs-12 center-block text-center">
                     <p style={styling.p}>
-                        Connection Lost!
+                        {props.title}
                     </p>
                 </div>
             </div>
 
             <div style={styling.row} className="row">
                 <div style={styling.col} className="col-xs-12 center-block text-center">
-                    {plugIcon}
+                    {props.icon}
+                </div>
+            </div>
+
+            <div style={styling.row} className="row">
+                <div style={styling.col} className="col-xs-12 center-block text-center">
+                    <p style={styling.p}>
+                        {props.subtitle}
+                    </p>
                 </div>
             </div>
         </div>
@@ -30,7 +37,13 @@ function ConnectionLost(props) {
 }
 
 const mapStateToProps = (stateGlobal, props) => {
-    return props;
+    const timeFormat = new Intl.DateTimeFormat('en', { hour: 'numeric', minute: 'numeric' });
+    return {
+        ...props,
+        title: "Connection Lost!",
+        subtitle: "Last online at " + timeFormat.format(stateGlobal.OnlineStatus.dateWasLastOnline),
+        icon: icon.drawableComponentForIcon(constants.icon.name.plug),
+    };
 };
 
 export default connect(mapStateToProps)(ConnectionLost);
