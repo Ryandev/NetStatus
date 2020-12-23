@@ -1,21 +1,63 @@
 {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Chrome",
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}/src",
+            "webRoot": "${workspaceRoot}/src",
             "runtimeArgs": ["--disable-web-security", "-allow-cross-origin-auth-prompt", "--allow-insecure-localhost"]
-          },
-          {
-            "type": "firefox",
+        },
+        {
+            "name": "Debug Tests",
+            "type": "node",
             "request": "launch",
-            "name": "Launch Firefox against localhost",
-            "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}/src",
-            "reAttach": true            
-        }                  
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
+            "args": ["test", "--runInBand", "--no-cache", "--watchAll=false"],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "env": { "CI": "true" },
+            "disableOptimisticBPs": true
+        },        
+        {
+            "name": "Jest Debug opened file",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
+            "args": ["test", "${fileBasenameNoExtension}", "--runInBand", "--no-cache", "--watchAll"],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "env": [
+                "NODE_TLS_REJECT_UNAUTHORIZED=0"
+            ]
+        },        
+        {
+            "name": "Launch via NPM",
+            "request": "launch",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
     ]
 }
