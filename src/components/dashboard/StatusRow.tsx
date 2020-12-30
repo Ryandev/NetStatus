@@ -7,20 +7,20 @@ import styling from './StatusRow.style';
 import { Status, IStatusProps } from './StatusRow.if';
 
 
-const iconForStatus = (statusVal: Status, log: ILogger = IOC().logger()): JSX.Element => {
-    let elem = Icon.ExclamationTriangle();
+const iconForStatus = (statusVal: Status, style={}, log: ILogger = IOC().logger()): JSX.Element => {
+    let elem = Icon.ExclamationTriangle(style);
 
     switch (statusVal) {
         case Status.Good:
-            elem = Icon.TickCircle();
+            elem = Icon.TickCircle(style);
             break;
 
         case Status.Warning:
-            elem = Icon.QuestionMarkCircle();
+            elem = Icon.QuestionMarkCircle(style);
             break;
 
         case Status.Bad:
-            elem = Icon.ExclamationTriangle();
+            elem = Icon.ExclamationTriangle(style);
             break;
 
         default:
@@ -35,13 +35,11 @@ function StatusRow(props: IStatusProps) {
         <div
             key='statusrow-container'
             style={styling('Container', props)}
-            className="row alert">
-            <div className="" role="alert">
-                {iconForStatus(props.status)}
-                &nbsp;
-                <span id="status-name">{props.name}</span>
-                &nbsp;
-                <span id="status-value">{props.value}</span>
+            className="row alert statusRowContainer">
+            <div className="statusRowInnerContainer" style={styling('InnerContainer', props)} role="alert">
+                {iconForStatus(props.status, styling('StatusIcon', props))}
+                <span id="status-name" style={styling('SpanName', props)}>{props.name}</span>
+                <span id="status-value" style={styling('SpanValue', props)}>{props.value}</span>
             </div>
         </div>
     );

@@ -14,17 +14,17 @@ const _initFontAwesome = () => {
     library.add(faCheckCircle, faPlug, faQuestionCircle, faExclamationTriangle, faWifi);
 }
 
-function ComponentForIconName(faIconName: IconName, className=""): JSX.Element {
+function ComponentForIconName(faIconName: IconName, className="", styling={}): JSX.Element {
     _initFontAwesome();
-    return (<FontAwesomeIcon className={className} icon={faIconName} />);
+    return (<FontAwesomeIcon className={className} icon={faIconName} style={styling} />);
 }
 
-const TickCircle            = () => ComponentForIconName(faCheckCircle.iconName);
-const QuestionMarkCircle    = () => ComponentForIconName(faQuestionCircle.iconName);
-const ExclamationTriangle   = () => ComponentForIconName(faExclamationTriangle.iconName);
-const Plug                  = () => ComponentForIconName(faPlug.iconName);
-const WiFi                  = () => ComponentForIconName(faWifi.iconName);
-const Spinner               = () => ComponentForIconName(faSpinner.iconName, 'animateRotate');
+const TickCircle            = (styling={}) => ComponentForIconName(faCheckCircle.iconName, '', styling);
+const QuestionMarkCircle    = (styling={}) => ComponentForIconName(faQuestionCircle.iconName, '', styling);
+const ExclamationTriangle   = (styling={}) => ComponentForIconName(faExclamationTriangle.iconName, '', styling);
+const Plug                  = (styling={}) => ComponentForIconName(faPlug.iconName, '', styling);
+const WiFi                  = (styling={}) => ComponentForIconName(faWifi.iconName, '', styling);
+const Spinner               = (styling={}) => ComponentForIconName(faSpinner.iconName, 'animateRotate', styling);
 
 const exports = {
     TickCircle,
