@@ -1,7 +1,6 @@
 
 
 import { IServiceStatus } from "../interface";
-import runner from './speedRunner';
 import { INetworkSpeedService, INetworkSpeedConfig } from "./interface";
 
 
@@ -16,7 +15,7 @@ function startSpeedTest(service: INetworkSpeedService, config: INetworkSpeedConf
 	service.status = IServiceStatus.Busy;
 	notifyCallbacks(service);
 
-	runner(config.serverConfigurations)
+	service.worker.run()
 		.then((result) => {
 			if ( !isRunning(service) ) { return; }
 			service.state = service.state.apply(result);

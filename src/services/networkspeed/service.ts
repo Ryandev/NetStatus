@@ -3,15 +3,18 @@ import { IService, IServiceStatus } from "../interface";
 import { INetworkSpeedState, INetworkSpeedService, INetworkSpeedConfig } from "./interface";
 import model from './model';
 import util from './util';
+import newRunner from './speedRunner';
 
 
-function createService(config: INetworkSpeedConfig): INetworkSpeedService {
+function createService(config: INetworkSpeedConfig): IService<INetworkSpeedState> {
+    let runner = newRunner(config.serverConfigurations);
+
     const service: INetworkSpeedService = {
         status: IServiceStatus.Initialized,
         name: 'NetSpeed',
         state: model(),
         subscribeForUpdates: function(this: INetworkSpeedService, subscriberKey: string, callback: (service: IService<INetworkSpeedState>) => void) {
-		    this.callbackUpdates[subscriberKey] = callback;
+            this.callbackUpdates[subscriberKey] = callback;
         },
         unsubscribeFromUpdates: function(this: INetworkSpeedService, subscriberKey: string) {
 			delete this.callbackUpdates[subscriberKey];
@@ -43,10 +46,14 @@ function createService(config: INetworkSpeedConfig): INetworkSpeedService {
 
         callbackUpdates: {},
         timer: null,
+        worker: runner,
     };
     
     const runSpeedTest = () => {
-        util.startSpeedTest(service, config);
+        service.worker.ready()
+            .then(function(){
+                util.startSpeedTest(service, config);
+            })
     };
 
     return service;

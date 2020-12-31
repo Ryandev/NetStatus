@@ -18,20 +18,17 @@ function retryOperation<T>(operation: () => Promise<T>, delay: number, retries: 
 
 	return new Promise((resolve, reject) => {
 		return operation()
-		  .then(resolve)
-		  .catch((reason) => {
+			.then(resolve)
+			.catch((reason) => {
 			if (retries <= 0) { reject(reason); }
 
 			return wait(delay)
 				.then((): Promise<T> => {
 					return retryOperation(operation, delay, retries-1);
-					// let op = retryOperation;
-					// op.bind(null, operation, delay, retries - 1);
-					// return op;
 				})
 				.then(resolve)
 				.catch(reject);
-		  });
+		});
 	});
 }
 

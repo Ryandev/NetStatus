@@ -77,7 +77,7 @@ function _updateWithData(
     function isTestRunning(objSearch: object, defaultValue = false) {
         if ( !objSearch ) { return defaultValue; }
 
-        if ( objSearch.hasOwnProperty('isTestRunning') ) {
+        if ( (objSearch as any)['isTestRunning'] ?? false ) {
             return Boolean((objSearch as any).isTestRunning);
         }
 

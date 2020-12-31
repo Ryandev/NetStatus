@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use strict";
 
 /*
@@ -328,6 +329,11 @@ Speedtest.prototype = {
    */
   start: function() {
     if (this._state == 3) throw "Test already running";
+    if ( this.worker ) {
+      this.worker.terminate();
+      this.worker.onmessage = null;
+      this.worker = null;
+    }
     this.worker = new Worker("speedtest_worker.js?r=" + Math.random());
     this.worker.onmessage = function(e) {
       if (e.data === this._prevData) return;

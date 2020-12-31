@@ -4,4 +4,4 @@ export interface IAdditionalInfoRowProps {
     iconLeft: "wifi"|"spinner";
     textLeft: string;
     textRight: string;
-};
+}

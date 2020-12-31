@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
 	LibreSpeed - Worker
 	by Federico Dossena

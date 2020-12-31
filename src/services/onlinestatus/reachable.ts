@@ -5,7 +5,7 @@ enum PINGSTATUS {
     PASSED,
     FAILED_ERROR,
     FAILED_TIMEOUT,
-};
+}
 
 interface IReachable {
     status: PINGSTATUS,

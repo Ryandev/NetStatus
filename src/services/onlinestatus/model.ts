@@ -23,6 +23,6 @@ function OnlineStatus(isOnline: boolean = false) : IOnlineStatusState {
             return copy;
         },
     }
-};
+}
 
 export default OnlineStatus;

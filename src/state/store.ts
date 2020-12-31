@@ -7,7 +7,7 @@ import SpeedTest from './networkspeed/reducer';
 function store(initialiState = {}, reducers={}, enhancers?: StoreEnhancer<any>) {
     let rootReducers = combineReducers({OnlineStatus, SpeedTest, ...reducers});
 
-    let store = createStore(rootReducers, initialiState, enhancers);;
+    let store = createStore(rootReducers, initialiState, enhancers);
 
     return store;
 }

@@ -7,7 +7,7 @@ export interface IRouteComponentProps {
     history: any,
     location: any,
     match: any,
-};
+}
 
 export interface IRoute {
     path: string;

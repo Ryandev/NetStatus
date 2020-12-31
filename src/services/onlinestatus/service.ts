@@ -13,7 +13,7 @@ function createService(config: IOnlineStatusConfig, log: ILogger = IOC().logger(
 		name: 'OnlineStatus',
 		state: model(),
 		subscribeForUpdates: function(this: IOnlineStatusService, subscriberKey: string, callback: (service: IService<IOnlineStatusState>) => void) {
-		    this.callbackUpdates[subscriberKey] = callback;
+			this.callbackUpdates[subscriberKey] = callback;
 		},
 		unsubscribeFromUpdates: function(this: IOnlineStatusService, subscriberKey: string) {
 			delete this.callbackUpdates[subscriberKey];

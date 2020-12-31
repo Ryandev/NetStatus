@@ -9,7 +9,7 @@ export interface IServiceManager {
     networkSpeed: IService<INetworkSpeedState>;
 }
 
-export interface IServiceState {};
+export interface IServiceState {}
 
 export enum IServiceStatus {
     Unitialized,

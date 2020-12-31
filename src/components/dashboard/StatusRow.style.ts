@@ -41,7 +41,7 @@ const DEFAULTS: Record<string, Record<string, React.CSSProperties>> = {
     INNERCONTAINER: {
         DEFAULT: {
             width: '100%',
-            height: '100%;',
+            height: '100%',
             padding: '0px',
             paddingLeft: '5%',
         }

@@ -4,7 +4,14 @@ import { IService } from "../interface";
 
 export interface INetworkSpeedService extends IService<INetworkSpeedState> {
 	callbackUpdates: Record<string, (service: IService<INetworkSpeedState>) => void>;
-	timer: any;
+    timer: any;
+    worker: ISpeedRunner;
+}
+
+export interface ISpeedRunner {
+    isReady: () => boolean;
+    ready: () => Promise<void>;
+    run: () => Promise<INetworkSpeedState>;
 }
 
 export interface INetworkSpeedState {
@@ -18,7 +25,7 @@ export interface INetworkSpeedState {
 
     updateWithData: (data: object) => void;
     apply: (data: Partial<INetworkSpeedState>) => INetworkSpeedState;
-};
+}
 
 export enum SpeedTestState {
     Idle,

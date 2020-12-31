@@ -1,7 +1,6 @@
 
 import { ILogger, LOGSEVERITY } from '../interfaces/log';
 
-
 export interface ILogConfig {
     levels: LOGSEVERITY[];
 }
