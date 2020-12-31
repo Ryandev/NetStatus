@@ -4,7 +4,7 @@ NetStatus is a dashboard WebUI to track internet connectivity
 This project was intended for use with Raspberry Pi 4 + 3.5" LCD display, however with docker
 it supports AMD64 arch & can be used on other hardware
 ![Raspberry PI screenshot](https://raw.githubusercontent.com/Ryandev/NetStatus/master/documentation/rpi.jpg "Raspberry PI screenshot")
-[Setup instructions for RPI](https://raw.githubusercontent.com/Ryandev/NetStatus/master/documentation/rpi.md)
+[Setup instructions for RPI](https://github.com/Ryandev/NetStatus/blob/master/documentation/rpi.md)
 
 ## Features
 - Offline notifications
