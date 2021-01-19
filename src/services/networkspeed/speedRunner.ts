@@ -25,7 +25,7 @@ interface ISpeedRunnerPrivate extends ISpeedRunner {
 }
 
 function makeRunner(testServers: IServerConfiguration[], log: ILogger = IOC().logger()): ISpeedRunner {
-    let runner = new (window as any).Speedtest();
+    const runner = new (window as any).Speedtest();
     runner.setParameter("telemetry_level", "none");
     runner.addTestPoints(testServers);
 
@@ -39,10 +39,9 @@ function makeRunner(testServers: IServerConfiguration[], log: ILogger = IOC().lo
             if ( this.flagIsReady ) { return Promise.resolve() }
 
             const self = this;
-            let runner = self.runner;
 
             return new Promise(function(resolve, reject) {
-                runner.selectServer(function (server: IServerConfiguration) {
+                self.runner.selectServer(function (server: IServerConfiguration) {
                     if (server) {
                         log.info('Finished selecting server ' + JSON.stringify(server) + ', starting speed test');
                         self.flagIsReady = true;
@@ -57,7 +56,7 @@ function makeRunner(testServers: IServerConfiguration[], log: ILogger = IOC().lo
         run: function(this: ISpeedRunnerPrivate) {
             if ( !this.flagIsReady ) { return Promise.reject("Cannot run speed test before running ready()") }
 
-            let runner = this.runner;
+            const runner = this.runner;
             runner.onupdate = null;
             runner.onend = null;
 
@@ -66,7 +65,7 @@ function makeRunner(testServers: IServerConfiguration[], log: ILogger = IOC().lo
 
                 runner.onupdate = function(data: IRunnerData) {
                     log.verbose('Test runner update ' + JSON.stringify(data));
-                    let updateData: Partial<INetworkSpeedState> = {
+                    const updateData: Partial<INetworkSpeedState> = {
                         ispLocation: data.clientIp,
                         downloadSpeed: parseFloat(data.dlStatus),
                         uploadSpeed: parseFloat(data.ulStatus),

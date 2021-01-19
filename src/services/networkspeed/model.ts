@@ -125,7 +125,7 @@ function SpeedTest(
         dateOfLastTest?: Date
         ): INetworkSpeedState {
 
-    let speedTest: INetworkSpeedState = {
+    const speedTest: INetworkSpeedState = {
         ispLocation,
         downloadSpeed,
         uploadSpeed,

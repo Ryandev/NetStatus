@@ -7,7 +7,7 @@ import newRunner from './speedRunner';
 
 
 function createService(config: INetworkSpeedConfig): IService<INetworkSpeedState> {
-    let runner = newRunner(config.serverConfigurations);
+    const runner = newRunner(config.serverConfigurations);
 
     const service: INetworkSpeedService = {
         status: IServiceStatus.Initialized,

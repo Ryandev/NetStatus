@@ -7,7 +7,7 @@ import Controller from '../controllers/loading';
 import util from './util';
 
 
-let route: IRoute = {
+const route: IRoute = {
     path: "/loading",
     isShowing: (history: History) => util.historyMatchesLocation(history, route.path),
     component: (props: any) => {

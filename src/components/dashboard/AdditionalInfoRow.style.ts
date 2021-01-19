@@ -30,7 +30,7 @@ const styleColRight: React.CSSProperties = {
     whiteSpace: 'nowrap',
 };
 
-let style = {
+const style = {
     container: styleContainer,
     colLeft: styleColLeft,
     colRight: styleColRight,

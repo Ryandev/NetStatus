@@ -6,7 +6,7 @@ import Controller from '../controllers/offline';
 import util from './util';
 
 
-let route: IRoute = {
+const route: IRoute = {
     path: "/offline",
     isShowing: (history: History) => util.historyMatchesLocation(history, route.path),
     component: (props: any) => <Controller {...props} />,

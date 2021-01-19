@@ -10,7 +10,7 @@ import { IAdditionalInfoRowProps } from "./AdditionalInfoRow.if";
 
 function Container(props: IDashboardProps): JSX.Element {
     const mapStatusItemToStatusRow = (item: IDashboardStatusItem): JSX.Element => {
-        let statusMap: Record<DashboardStatusValue,Status> = {
+        const statusMap: Record<DashboardStatusValue,Status> = {
             [DashboardStatusValue.Good]: Status.Good,
             [DashboardStatusValue.Warning]: Status.Warning,
             [DashboardStatusValue.Bad]: Status.Bad,
@@ -29,7 +29,7 @@ function Container(props: IDashboardProps): JSX.Element {
         .statusItems
         .map((data) => mapStatusItemToStatusRow(data));
 
-    let infoProps: IAdditionalInfoRowProps = {
+    const infoProps: IAdditionalInfoRowProps = {
         showIconLeft: props.showInfoIcon,
         iconLeft: props.infoIcon,
         textLeft: props.infoTextLeft,

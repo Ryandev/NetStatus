@@ -14,7 +14,7 @@ const services = serviceInit();
 const providerStore = state.store()
 
 window.addEventListener('load', () => {
-	let promises = services.allServices.map((service) => service.start());
+	const promises = services.allServices.map((service) => service.start());
 	Promise.all(promises)
 		.then(()=>IOC().logger().info("Services started"))
 });
@@ -46,10 +46,10 @@ services.networkSpeed.subscribeForUpdates("NetSpeed-CB", (service) => {
 })
 
 providerStore.subscribe(() => {
-	let history = Router.history();
+	const history = Router.history();
 	if ( !history ) { return; }
 
-	let state = providerStore.getState();
+	const state = providerStore.getState();
 
 	const isShowingDashboard = Router.routes.dashboard.isShowing(history);
 	const isOnline = state.OnlineStatus.isOnline;

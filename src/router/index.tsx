@@ -7,7 +7,7 @@ import offline from './offline';
 import dashboard from './dashboard';
 
 
-let routes = {
+const routes = {
     loading,
     dashboard,
     offline,
@@ -15,7 +15,7 @@ let routes = {
 
 function Render(): JSX.Element {
     const routesComponents = Object.values(routes).map(
-        ((route: IRoute, x: number) => {
+        ((route: IRoute) => {
             return <Route 
                 key={'route-'+route.path}
                 exact

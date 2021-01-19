@@ -8,7 +8,7 @@ import model from './model';
 
 
 function createService(config: IOnlineStatusConfig, log: ILogger = IOC().logger()): IOnlineStatusService {
-	let service: IOnlineStatusService = {
+	const service: IOnlineStatusService = {
         status: IServiceStatus.Initialized,
 		name: 'OnlineStatus',
 		state: model(),
@@ -57,7 +57,7 @@ function createService(config: IOnlineStatusConfig, log: ILogger = IOC().logger(
         timer: null,
 	};
 
-	let updateNavigatorOnline = () => {
+	const updateNavigatorOnline = () => {
 		service.state.isOnline = util.isNavigatorOnline();
 		log.info('online status changed to: ' + (service.state.isOnline ? 'online' : 'offline'));
 		util.notifyCallbacks(service);

@@ -74,7 +74,7 @@ function startNetPingCheck(
 			})
 }
 
-let notifyCallbacks = (service: IOnlineStatusService) => {
+const notifyCallbacks = (service: IOnlineStatusService) => {
 	Object.values(service.callbackUpdates).forEach((callback) => callback(service));
 }
 

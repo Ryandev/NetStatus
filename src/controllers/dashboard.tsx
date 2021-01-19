@@ -12,7 +12,7 @@ function Controller(props: IDashboardProps): JSX.Element {
     const forceUpdate = React.useCallback(() => updateState({}), []);
 
     useEffect(() => {
-        let timer = setInterval(() => {
+        const timer = setInterval(() => {
             console.log('Updating');
             forceUpdate();
         }, 

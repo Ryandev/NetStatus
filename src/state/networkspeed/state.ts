@@ -2,7 +2,7 @@ import { INetworkSpeedState } from "./interface"
 
 
 function State(): INetworkSpeedState {
-    let state = {
+    const state = {
         jitter: 0,
         latency: 0,
         uploadSpeed: 0,

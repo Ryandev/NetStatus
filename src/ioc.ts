@@ -10,7 +10,7 @@ import EnvDI from './util/env.di';
 import ConfigDI from './config/index.di';
 
 
-let symbol = Symbol.for('IOC');
+const symbol = Symbol.for('IOC');
 
 export interface IIOC {
     logger: () => ILogger;
@@ -26,7 +26,7 @@ const newContainer = (): IIOC => {
     ConfigDI.addBinding(container);
     LogDi.addBinding(container);
     
-    let mapped: IIOC = {
+    const mapped: IIOC = {
         env: () => EnvDI.resolve(container),
         config: () => ConfigDI.resolve(container),
         logger: () => LogDi.resolve(container),
@@ -41,7 +41,7 @@ const getIOC = (): IIOC|null => {
     return (global as any)[symbol];
 }
 
-let get = (): IIOC => {
+const get = (): IIOC => {
     let ioc: IIOC|null = getIOC(); 
     if ( !ioc ) {
         ioc = newContainer();

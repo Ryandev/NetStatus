@@ -11,7 +11,7 @@ function historyMatchesLocation(history: History, path: string): boolean {
         location = history.location.pathname.substring(1); /* remove leading / */
     }
 
-    let matched = path === location;
+    const matched = path === location;
 
     return matched;
 }

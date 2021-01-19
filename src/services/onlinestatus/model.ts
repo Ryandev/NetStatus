@@ -17,7 +17,7 @@ function OnlineStatus(isOnline: boolean = false) : IOnlineStatusState {
             _updateWithData(this, isOnline);
         },
         apply: function (data: Partial<IOnlineStatusState>) {
-            let copy = OnlineStatus(
+            const copy = OnlineStatus(
                 data?.isOnline ?? false,
             );
             return copy;

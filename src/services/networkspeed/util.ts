@@ -2,13 +2,14 @@
 
 import { IServiceStatus } from "../interface";
 import { INetworkSpeedService, INetworkSpeedConfig } from "./interface";
+import IOC from '../../ioc';
 
 
 function isRunning(service: INetworkSpeedService): boolean {
 	return service.status === IServiceStatus.Idle || service.status === IServiceStatus.Busy;
 }
 
-function startSpeedTest(service: INetworkSpeedService, config: INetworkSpeedConfig) {
+function startSpeedTest(service: INetworkSpeedService, config: INetworkSpeedConfig, log=IOC().logger()) {
 	clearTimeout(service.timer);
 	service.timer = null;
 
@@ -25,6 +26,7 @@ function startSpeedTest(service: INetworkSpeedService, config: INetworkSpeedConf
 				Math.max(config.testInterval, 60) * 1000);
 		})
 		.catch((error: Error) => {
+			log.error('Speed test run failed: ' + JSON.stringify(error));
 			if ( !isRunning(service) ) { return; }
 			service.status = IServiceStatus.Error;
 			service.timer = setTimeout(()=>startSpeedTest(service, config), 
@@ -32,7 +34,7 @@ function startSpeedTest(service: INetworkSpeedService, config: INetworkSpeedConf
 		})
 }
 
-let notifyCallbacks = (service: INetworkSpeedService) => {
+const notifyCallbacks = (service: INetworkSpeedService) => {
 	Object.values(service.callbackUpdates).forEach((callback) => callback(service));
 }
 

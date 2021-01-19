@@ -3,7 +3,7 @@ import { IOnlineStatusState } from "./interface"
 
 
 function State(): IOnlineStatusState {
-    let state = {
+    const state = {
         isOnline: true,
         dateWasLastOnline: new Date(0),
     }
