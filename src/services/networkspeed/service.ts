@@ -43,6 +43,10 @@ function createService(config: INetworkSpeedConfig): IService<INetworkSpeedState
 
             return Promise.resolve();
         },
+        forceUpdate: function(this: INetworkSpeedService) {
+            runSpeedTest();
+            return Promise.resolve();
+        },
 
         callbackUpdates: {},
         timer: null,

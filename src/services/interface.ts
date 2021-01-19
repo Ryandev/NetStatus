@@ -29,4 +29,5 @@ export interface IService<T extends IServiceState> {
     unsubscribeAll: () => void;
     start: () => Promise<void>;
     stop: () => Promise<void>;
+    forceUpdate: () => Promise<void>;
 }

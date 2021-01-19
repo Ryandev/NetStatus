@@ -13,10 +13,20 @@ import IOC from './ioc';
 const services = serviceInit();
 const providerStore = state.store()
 
+const startServices = () => services.allServices.map((service) => service.start());
+const updateServices = () => services.allServices.map((service) => service.forceUpdate());
+
 window.addEventListener('load', () => {
-	const promises = services.allServices.map((service) => service.start());
-	Promise.all(promises)
+	Promise.all(startServices())
 		.then(()=>IOC().logger().info("Services started"))
+
+	const rootElem = document.getElementById('root');
+	if ( rootElem ) {
+		rootElem.onclick = function() {
+			Promise.all(updateServices())
+				.then(()=>IOC().logger().info("Services statuses force-updated"))
+		}
+	}
 });
 
 services.onlineStatus.subscribeForUpdates("OnlineStatus-CB", (service) => {

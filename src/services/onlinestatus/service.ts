@@ -52,6 +52,10 @@ function createService(config: IOnlineStatusConfig, log: ILogger = IOC().logger(
             
             return Promise.resolve();
 		},
+        forceUpdate: function(this: IOnlineStatusService) {
+            updateNavigatorOnline();
+            return Promise.resolve();
+        },
 
         callbackUpdates: {},
         timer: null,
