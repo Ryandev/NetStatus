@@ -1,10 +1,11 @@
 # NetStatus
 NetStatus is a dashboard WebUI to track internet connectivity
+Live: [http://netstatus.ryanpowell.dev](http://netstatus.ryanpowell.dev)
 
 This project was intended for use with Raspberry Pi 4 + 3.5" LCD display, however with docker
 it supports AMD64 arch & can be used on other hardware
 ![Raspberry PI screenshot](https://raw.githubusercontent.com/Ryandev/NetStatus/master/documentation/rpi.jpg "Raspberry PI screenshot")
-[Setup instructions for RPI](https://github.com/Ryandev/NetStatus/blob/master/documentation/rpi.md)
+Setup instructions for Raspberry PI, (flasing image, package installs, autostart setup)  [RPI](https://github.com/Ryandev/NetStatus/blob/master/documentation/rpi.md)
 
 ## Features
 - Offline notifications
@@ -27,19 +28,18 @@ it supports AMD64 arch & can be used on other hardware
 bottom right is your ISP name/location*
 
 ## Run
-### Arm64 (Raspberry Pi 4)
-```
-sudo docker run --name netspeed -d --restart=always -p 80:80 ryandev/netspeed:arm64
-```
+Load url (http://netstatus.ryanpowell.dev)[http://netstatus.ryanpowell.dev] in Browser
+
+### Docker Deployment
+Local deployment also supported on Arm64 & PC Architectures below
+
+*Arm64 (Raspberry Pi 4)* ``` sudo docker run --name netspeed -d --restart=always -p 80:80  ryandev/netspeed:arm64```
 Now go to http://localhost to view 
 
-### AMD64 (PC)
-```
-sudo docker run --name netspeed -d --restart=always -p 80:80 ryandev/netspeed:latest
-```
+*AMD64 (PC)* ```sudo docker run --name netspeed -d --restart=always -p 80:80 ryandev/netspeed:latest```
 
 
-### Configurables
+#### Configurables
 | Name                                      | Description                                                                                                                                                                                   | Environment name               | Value units | Default value           |
 |-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|-------------|-------------------------|
 | Frequnecy of ping checks                  | How frequently to fetch a favicon to check if the network is there.  This is needed as `navigator.isOnline` implmentation varies across browsers                                              | REACT_APP_PINGINTERVAL         | Seconds     | 15                      |
@@ -56,7 +56,7 @@ sudo docker run --name netspeed -d --restart=always -p 80:80 ryandev/netspeed:la
 | Jitter error threshold                    |                                                                                                                                                                                               | REACT_APP_JITTERERROR          | ms          | 100                     |
 All configurables can be found under src/config/*.ts
 
-#### Example usage
+#### Example
 Set speed test interval to 10mins, ping checks every 1min, & latency warn threshold to 20ms
 ```
 sudo docker run --name netspeed -d --restart=always -p 80:80 --env REACT_APP_TESTINTERVAL=600 --env REACT_APP_PINGINTERVAL=60 --env REACT_APP_LATENCYWARN=20 ryandev/netspeed:arm64
