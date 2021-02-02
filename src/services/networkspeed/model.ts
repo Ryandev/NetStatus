@@ -19,10 +19,19 @@ function _updateWithData(
     speedTest: INetworkSpeedState, 
     data: object, 
     log: ILogger = IOC().logger()) {
-
-    function ispLocation(objSearch: object, defaultValue: any = '') {
+    
+    function clientIp(objSearch: object, defaultValue: any = '') {
         var val = searchValue(objSearch, [
-            'clientIp', 'ispLocation'
+            'clientIp'
+        ], defaultValue);
+        return val !== undefined
+            ? val
+            : defaultValue;
+    }
+    
+    function ispInfo(objSearch: object, defaultValue: any = '') {
+        var val = searchValue(objSearch, [
+            'ispInfo'
         ], defaultValue);
         return val !== undefined
             ? val
@@ -84,8 +93,12 @@ function _updateWithData(
         return defaultValue;
     }
 
-    if (ispLocation(data, null)) {
-        speedTest.ispLocation = ispLocation(data);
+    if (clientIp(data, null)) {
+        speedTest.clientIp = clientIp(data);
+    }
+
+    if (ispInfo(data, null)) {
+        speedTest.ispInfo = ispInfo(data);
     }
 
     if (dlValue(data, -1) > -1) {
@@ -116,7 +129,8 @@ function _updateWithData(
 }
 
 function SpeedTest(
-        ispLocation: string = 'unknown', 
+        clientIp: string = 'unknown',
+        ispInfo: string = 'unknown', 
         downloadSpeed: number = 0,
         uploadSpeed: number = 0,
         latency: number = 0,
@@ -126,7 +140,8 @@ function SpeedTest(
         ): INetworkSpeedState {
 
     const speedTest: INetworkSpeedState = {
-        ispLocation,
+        clientIp,
+        ispInfo,
         downloadSpeed,
         uploadSpeed,
         latency,
@@ -138,7 +153,8 @@ function SpeedTest(
         },
         apply: function (data: Partial<INetworkSpeedState>) {
             const copy = SpeedTest(
-                data?.ispLocation ?? '',
+                data?.clientIp ?? '',
+                data?.ispInfo ?? '',
                 data?.downloadSpeed ?? 0,
                 data?.uploadSpeed ?? 0,
                 data?.latency ?? 0,
@@ -148,7 +164,6 @@ function SpeedTest(
             );
             return copy;
         }
-        
     }
 
     if ( dateOfLastTest ) {

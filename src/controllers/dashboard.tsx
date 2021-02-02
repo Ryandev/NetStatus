@@ -13,7 +13,6 @@ function Controller(props: IDashboardProps): JSX.Element {
 
     useEffect(() => {
         const timer = setInterval(() => {
-            console.log('Updating');
             forceUpdate();
         }, 
             1000 * props.refreshPageInterval);

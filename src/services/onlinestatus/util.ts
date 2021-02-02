@@ -50,7 +50,7 @@ function startNetPingCheck(
 	}
 
 	function canReachAsync(website: string): Promise<boolean> {
-		log.verbose('Checking can access site' + website);
+		log.error('Checking can access site' + website);
 		return new Promise<boolean>(function(resolve, reject) {
 			reachable.canReach(getWebsiteURL(), function(result){
 				const isOnline = result.isOnline();
@@ -59,19 +59,21 @@ function startNetPingCheck(
 		})
 	}
 
-	retryOperation(()=>canReachAsync(getWebsiteURL()), 1000, 3)
+	const url = getWebsiteURL();
+
+	retryOperation(()=>canReachAsync(url), 1000, 3)
 		.then(function(isOnline: boolean) {
-				if ( isOnline ) {
-					log.info('Successfully reached website');
-				} else {
-					log.error('Failed to reach website');
-				}
-				callback(isOnline);
-			})
-			.catch(function(error: Error) {
-				log.error('Failed to reach website, error:' + JSON.stringify(error));
-				callback(false);
-			})
+			if ( isOnline ) {
+				log.info('Successfully reached website: ' + url);
+			} else {
+				log.error('Failed to reach website: ' + url);
+			}
+			callback(isOnline);
+		})
+		.catch(function(error: Error) {
+			log.error(`Failed to reach website:${url} error: + JSON.stringify(error)`);
+			callback(false);
+		})
 }
 
 const notifyCallbacks = (service: IOnlineStatusService) => {

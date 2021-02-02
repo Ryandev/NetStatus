@@ -12,6 +12,7 @@ interface IRunnerData {
     ulStatus: string,
     pingStatus: string,
     clientIp: string,
+    ispInfo: any,
     jitterStatus: string,
     dlProgress: number,
     ulProgress: number,
@@ -65,8 +66,14 @@ function makeRunner(testServers: IServerConfiguration[], log: ILogger = IOC().lo
 
                 runner.onupdate = function(data: IRunnerData) {
                     log.verbose('Test runner update ' + JSON.stringify(data));
+                    let ispInfo = data.ispInfo;
+                    if ( typeof ispInfo !== 'string' ) {
+                        const ispInfoObj = ispInfo as any;
+                        ispInfo = ispInfoObj?.hostname ?? 'unknown';
+                    }
                     const updateData: Partial<INetworkSpeedState> = {
-                        ispLocation: data.clientIp,
+                        ispInfo: ispInfo,
+                        clientIp: data.clientIp,
                         downloadSpeed: parseFloat(data.dlStatus),
                         uploadSpeed: parseFloat(data.ulStatus),
                         latency: parseFloat(data.pingStatus),

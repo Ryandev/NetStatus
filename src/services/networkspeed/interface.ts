@@ -15,7 +15,8 @@ export interface ISpeedRunner {
 }
 
 export interface INetworkSpeedState {
-    ispLocation: string;
+    clientIp: string;
+    ispInfo: string;
     downloadSpeed: number;
     uploadSpeed: number;
     latency: number;

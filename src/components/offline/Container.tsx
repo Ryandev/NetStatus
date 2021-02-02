@@ -6,16 +6,16 @@ import { IOfflineProps } from './Container.if';
 import styling from './Container.style';
 
 
-const iconForStatus = (statusVal: "plug"|"spinner", log: ILogger = IOC().logger()): JSX.Element => {
+const iconForStatus = (statusVal: "plug"|"spinner", style: React.CSSProperties = {}, log: ILogger = IOC().logger()): JSX.Element => {
     let elem = Icon.ExclamationTriangle();
 
     switch (statusVal) {
         case "plug":
-            elem = Icon.Plug();
+            elem = Icon.Plug(style);
             break;
 
         case "spinner":
-            elem = Icon.Spinner();
+            elem = Icon.Spinner(style);
             break;
 
         default:
@@ -39,9 +39,9 @@ function Container(props: IOfflineProps) {
                 </div>
             </div>
 
-            <div style={styling('Row', props)} className="row">
+            <div style={{...styling('Row', props), height:'25vmin'}} className="row">
                 <div style={styling('Col', props)} className="col-xs-12 center-block text-center">
-                    {iconForStatus(props.iconName)}
+                    {iconForStatus(props.iconName,styling('Icon', props))}
                 </div>
             </div>
 

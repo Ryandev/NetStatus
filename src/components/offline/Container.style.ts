@@ -10,27 +10,32 @@ const DEFAULT_STYLE: Record<string, React.CSSProperties> = {
         backgroundColor: '#000',
         paddingLeft: '0px',
         paddingRight: '0px',
-        paddingTop: '21%',
-        paddingBottom: '21%',
+        paddingTop: '18vh',
+        paddingBottom: '18vh',
         width: '100%',
         height: '100%'
     },
     COL: {
+        height: '100%',
         width: '100%'
     },
     P: {
+        height: '100%',
         width: '100%',
-        fontFamily: 'Inconsolata'
+        margin: 0,
+        fontFamily: 'Inconsolata',
     },
     ROW: {
-        fontSize: '12vh',
+        fontSize: '12vmin',
         textAlign: 'center',
         color: '#fff',
-        height: '30%',
-        width: '100%'
+        height: '20vmin',
+        width: '100%',
+        marginLeft: 0,
+        marginRight: 0,
     },
     ICON: {
-        fontSize: '26vh',
+        fontSize: '25vmin',
         textAlign: 'center',
         color: '#fff'
     }

@@ -8,26 +8,36 @@ const styleContainer: React.CSSProperties = {
     marginRight: '0px',
     borderRadius: '0px',
     padding: '0px',
-    height: '20vmin',
+    height: '14vmin',
     fontSize: '10vmin',
     color: '#fff',
     overflow: 'hidden',
     paddingLeft: '4vw',
-    paddingRight: '0px',
+    paddingRight: '4vw',
+    letterSpacing: '-1px',
 };
 
 const styleColLeft: React.CSSProperties = {
-    width: '30%',
+    width: '36%',
+    height: '100%',
     overflow: 'hidden',
     textOverflow: 'hidden',
     whiteSpace: 'nowrap',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
 };
 
 const styleColRight: React.CSSProperties = {
-    width: '70%',
+    width: '64%',
+    height: '100%',
     overflow: 'hidden',
     textOverflow: 'hidden',
     whiteSpace: 'nowrap',
+    textAlign: 'right',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
 };
 
 const style = {

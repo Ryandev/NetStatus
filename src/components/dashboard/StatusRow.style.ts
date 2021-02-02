@@ -40,6 +40,8 @@ const DEFAULTS: Record<string, Record<string, React.CSSProperties>> = {
     },
     INNERCONTAINER: {
         DEFAULT: {
+            display: 'flex',
+            alignItems: 'center',
             width: '100%',
             height: '100%',
             padding: '0px',
@@ -48,27 +50,38 @@ const DEFAULTS: Record<string, Record<string, React.CSSProperties>> = {
     },
     STATUSICON: {
         DEFAULT: {
-            width: '9vh',
-            height: '9vh',
+            width: '9vmin',
+            height: '9vmin',
         }
     },
     SPANNAME: {
         DEFAULT: {
-            fontSize: '10vh',
-            fontFamily: 'Inconsolata',
-            width: '36%',
             display: 'inline-block',
+            fontSize: '10vmin',
+            lineHeight: '10vmin',
+            fontFamily: 'Inconsolata',
+            width: '50vmin',
             paddingLeft: '2%',
             paddingRight: '2%',
+            wordWrap: 'break-word',
+            wordBreak: 'break-all',
+            overflowWrap: 'anywhere',
+            whiteSpace: 'normal',
         }
     },
     SPANVALUE: {
         DEFAULT: {
-            fontSize: '10vh',
+            display: 'inline-block',
+            position: 'relative',
+            right: 0,
+            fontSize: '10vmin',
+            lineHeight: '7vmin',
             fontFamily: 'Inconsolata',
-            width: '30%',
             paddingLeft: '2%',
-            paddingRight: '2%',
+            wordWrap: 'break-word',
+            wordBreak: 'break-all',
+            overflowWrap: 'anywhere',
+            whiteSpace: 'normal',
         }
     },
 };

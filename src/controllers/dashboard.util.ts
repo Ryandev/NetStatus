@@ -26,7 +26,7 @@ const describeDifferenceBetweenDates = function (startDate: Date, endDate: Date)
         case(deltaSeconds < minutesToSeconds(60)):
             {
                 const count = Math.round(secondsToMinutes(deltaSeconds))
-                return count + ' min' + (count > 1
+                return count + 'min' + (count > 1
                     ? 's'
                     : '');
             }
@@ -34,7 +34,7 @@ const describeDifferenceBetweenDates = function (startDate: Date, endDate: Date)
         case(deltaSeconds < hoursToSeconds(24)):
             {
                 const count = Math.round(secondsToHours(deltaSeconds))
-                return count + ' hr' + (count > 1
+                return count + 'hr' + (count > 1
                     ? 's'
                     : '');
             }
@@ -42,7 +42,7 @@ const describeDifferenceBetweenDates = function (startDate: Date, endDate: Date)
         default:
             {
                 const count = Math.round(secondsToDays(deltaSeconds))
-                return count + ' day' + (count > 1
+                return count + 'day' + (count > 1
                     ? 's'
                     : '');
             }

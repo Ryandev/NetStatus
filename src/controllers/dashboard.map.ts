@@ -49,7 +49,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
 
     const isTestRunning = state?.SpeedTest?.isTestRunning ?? false;
     const dateOfLastTest = state?.SpeedTest?.dateOfLastTest ?? null;
-    const ispLocation = state?.SpeedTest?.ispLocation ?? "unknown";
+    const clientIp = state?.SpeedTest?.clientIp ?? state?.SpeedTest?.ispInfo ?? 'missing';
     const infoTextLeft = isTestRunning
         ? ''
         : util.describeDifferenceBetweenDates(dateOfLastTest, new Date());
@@ -59,7 +59,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
         showInfoIcon: isTestRunning,
         infoIcon: "wifi",
         infoTextLeft: infoTextLeft,
-        infoTextRight: ispLocation,
+        infoTextRight: clientIp,
         refreshPageInterval: Math.max(1, config.view.refreshPageInterval)
     
     };

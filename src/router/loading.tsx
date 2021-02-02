@@ -11,7 +11,6 @@ const route: IRoute = {
     path: "/loading",
     isShowing: (history: History) => util.historyMatchesLocation(history, route.path),
     component: (props: any) => {
-        console.log('drawing loading');
         return (
             <Controller {...props} />
         )

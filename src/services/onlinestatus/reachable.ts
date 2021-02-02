@@ -50,6 +50,9 @@ const ImageChecker = function(address: string, callback: (result: IReachable)=>v
             this.image.onerror = function (error: Error) {
                 _updateResult(_that, PINGSTATUS.FAILED_ERROR, error);
             };
+            this.image.onabort = function() {
+                _updateResult(_that, PINGSTATUS.FAILED_ERROR, Error("User aborted request"));
+            }
         
             this.status = PINGSTATUS.RUNNING;
             this.timerHandler = setTimeout(function () {

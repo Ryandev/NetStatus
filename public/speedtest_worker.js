@@ -13,6 +13,7 @@ var ulStatus = ""; // upload speed in megabit/s with 2 decimal digits
 var pingStatus = ""; // ping in milliseconds with 2 decimal digits
 var jitterStatus = ""; // jitter in milliseconds with 2 decimal digits
 var clientIp = ""; // client's IP address as reported by getIP.php
+var ispInfo = ""; // ISP Location
 var dlProgress = 0; //progress of download test 0-1
 var ulProgress = 0; //progress of upload test 0-1
 var pingProgress = 0; //progress of ping+jitter test 0-1
@@ -98,6 +99,7 @@ this.addEventListener("message", function(e) {
 				ulStatus: ulStatus,
 				pingStatus: pingStatus,
 				clientIp: clientIp,
+				ispInfo: ispInfo,
 				jitterStatus: jitterStatus,
 				dlProgress: dlProgress,
 				ulProgress: ulProgress,
@@ -290,7 +292,6 @@ function clearRequests() {
 }
 // gets client's IP using url_getIp, then calls the done function
 var ipCalled = false; // used to prevent multiple accidental calls to getIp
-var ispInfo = ""; //used for telemetry
 function getIp(done) {
 	tverb("getIp");
 	if (ipCalled) return;
@@ -298,14 +299,35 @@ function getIp(done) {
 	var startT = new Date().getTime();
 	xhr = new XMLHttpRequest();
 	xhr.onload = function() {
+		/* takes string of format X.X.X.X - ISP Name & returns {clientIp: 'X.X.X.X', ispInfo: 'ISP Name' } */
+		function splitClientInfo(infoIn) {
+			var params = {clientIp: '', ispInfo: ''};
+			if ( infoIn.includes('-') ) {
+				var splits = infoIn.split(' - ');
+				params.clientIp = splits[0].trim();
+				params.ispInfo = splits[1].trim();
+			} else {
+				params.clientIp = infoIn;
+				params.ispInfo = "";
+			}
+
+			return params
+		}
 		tlog("IP: " + xhr.responseText + ", took " + (new Date().getTime() - startT) + "ms");
 		try {
 			var data = JSON.parse(xhr.responseText);
-			clientIp = data.processedString;
-			ispInfo = data.rawIspInfo;
+			if ( data.rawIspInfo != null ) {
+				clientIp = splitClientInfo(data.processedString).clientIp;
+				ispInfo = data.rawIspInfo;
+			} else {
+				var splitInfo = splitClientInfo(data.processedString)
+				clientIp = splitInfo.clientIp;
+				ispInfo = splitInfo.ispInfo
+			}
 		} catch (e) {
-			clientIp = xhr.responseText;
-			ispInfo = "";
+			var splitInfo = splitClientInfo(xhr.responseText)
+			clientIp = splitInfo.clientIp;
+			ispInfo = splitInfo.ispInfo
 		}
 		done();
 	};

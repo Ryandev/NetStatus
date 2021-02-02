@@ -1,3 +1,4 @@
+
 import { INetworkSpeedState } from "./interface"
 
 
@@ -9,7 +10,8 @@ function State(): INetworkSpeedState {
         downloadSpeed: 0,
         isTestRunning: false,
         dateOfLastTest: new Date(0),
-        ispLocation: 'unknown',
+        ispInfo: 'unknown',
+        clientIp: 'unknown',
     }
 
     return state;

@@ -7,7 +7,8 @@ function updateResults(store: any, state: Partial<{
         jitter: number;
         downloadSpeed: number;
         uploadSpeed: number;
-        ispLocation: string;
+        ispInfo: string;
+        clientIp: string;
     }>): StateModifier<INetworkSpeedState> {
     return {
         type: 'NetworkSpeed-UpdateResult',
@@ -17,8 +18,11 @@ function updateResults(store: any, state: Partial<{
             newModel.latency = state?.latency ?? newModel.latency;
             newModel.downloadSpeed = state?.downloadSpeed ?? newModel.downloadSpeed;
             newModel.uploadSpeed = state?.uploadSpeed ?? newModel.uploadSpeed;
-            if ( ( state?.ispLocation?.length ?? 0 ) > 0 ) {
-                newModel.ispLocation = state?.ispLocation ?? '';
+            if ( ( state?.ispInfo?.length ?? 0 ) > 0 ) {
+                newModel.ispInfo = state?.ispInfo ?? '';
+            }
+            if ( ( state?.clientIp?.length ?? 0 ) > 0 ) {
+                newModel.clientIp = state?.clientIp ?? '';
             }
             return newModel;
         }

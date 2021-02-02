@@ -4,7 +4,8 @@ export interface INetworkSpeedState {
     latency: number;
     uploadSpeed: number;
     downloadSpeed: number;
-    ispLocation: string;
+    ispInfo: string;
+    clientIp: string;
     isTestRunning: boolean;
     dateOfLastTest: Date;
 }
