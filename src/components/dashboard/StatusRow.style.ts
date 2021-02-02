@@ -60,7 +60,7 @@ const DEFAULTS: Record<string, Record<string, React.CSSProperties>> = {
             fontSize: '10vmin',
             lineHeight: '10vmin',
             fontFamily: 'Inconsolata',
-            width: '50vmin',
+            width: '40vw',
             paddingLeft: '2%',
             paddingRight: '2%',
             wordWrap: 'break-word',
