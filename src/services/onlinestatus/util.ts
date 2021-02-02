@@ -50,10 +50,13 @@ function startNetPingCheck(
 	}
 
 	function canReachAsync(website: string): Promise<boolean> {
-		log.error('Checking can access site' + website);
+		log.verbose('Checking can access site' + website);
 		return new Promise<boolean>(function(resolve, reject) {
 			reachable.canReach(getWebsiteURL(), function(result){
 				const isOnline = result.isOnline();
+				if ( !isOnline ) {
+					log.error(`Failed to reach website: ${website}, result:${JSON.stringify(result)}`)
+				}
 				resolve(isOnline);
 			});
 		})
