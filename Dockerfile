@@ -1,27 +1,15 @@
-FROM node:15.0.1-alpine3.11
-  
-# set working directory
+# build environment
+FROM node:current-alpine3.12 as build
 WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
+RUN npm ci --silent
+COPY . ./
+RUN npm run build
 
-RUN apk add --no-cache --virtual .gyp \
-        python \
-        make \
-        g++
-RUN npm ci --only=production
-RUn apk del .gyp
-
-RUN npm install react-scripts@3.4.1 -g
-
-#Copy all src
-COPY . .
-
-ENV PORT=80
+# production environment
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
-CMD [ "npm", "start" ]
+CMD ["nginx", "-g", "daemon off;"]
