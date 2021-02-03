@@ -73,7 +73,7 @@ const DEFAULTS: Record<string, Record<string, React.CSSProperties>> = {
         DEFAULT: {
             display: 'inline-block',
             position: 'relative',
-            right: 0,
+            width: '40vw',
             fontSize: '10vmin',
             lineHeight: '7vmin',
             fontFamily: 'Inconsolata',
