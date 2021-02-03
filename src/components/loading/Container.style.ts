@@ -27,7 +27,9 @@ const DEFAULT_STYLE: Record<string, React.CSSProperties> = {
         textAlign: 'center',
         color: '#fff',
         height: '30%',
-        width: '100%'
+        width: '100%',
+        marginLeft: 0,
+        marginRight: 0,
     },
     ICON: {
         fontSize: '26vh',
