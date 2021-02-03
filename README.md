@@ -1,11 +1,11 @@
 # NetStatus
 NetStatus is a dashboard WebUI to track internet connectivity
+
 Live: [http://netstatus.ryanpowell.dev](http://netstatus.ryanpowell.dev)
 
-This project was intended for use with Raspberry Pi 4 + 3.5" LCD display, however with docker
-it supports AMD64 arch & can be used on other hardware
+This project was intended for use with Raspberry Pi + 3.5" LCD display, however it supports multiple devices, aspect-ratios 
 ![Raspberry PI screenshot](https://raw.githubusercontent.com/Ryandev/NetStatus/master/documentation/rpi.jpg "Raspberry PI screenshot")
-Setup instructions for Raspberry PI, (flasing image, package installs, autostart setup)  [RPI](https://github.com/Ryandev/NetStatus/blob/master/documentation/rpi.md)
+Device setup instructions for Raspberry PI, (flasing image, package installs, autostart setup)  [RPI](https://github.com/Ryandev/NetStatus/blob/master/documentation/rpi.md)
 
 ## Features
 - Offline notifications
@@ -28,7 +28,7 @@ Setup instructions for Raspberry PI, (flasing image, package installs, autostart
 bottom right is your ISP name/location*
 
 ## Run
-Load url (http://netstatus.ryanpowell.dev)[http://netstatus.ryanpowell.dev] in Browser
+Either load url (https://netstatus.ryanpowell.dev)[https://netstatus.ryanpowell.dev] in WebBrowser or deploy locally with Docker below & open http://localhost:80 
 
 ### Docker Deployment
 Local deployment also supported on Arm64 & PC Architectures below
