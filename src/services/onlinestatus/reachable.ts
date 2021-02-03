@@ -22,7 +22,7 @@ interface IImageChecker extends IReachable {
     timerHandler: any;
 }
 
-const ImageChecker = function(address: string, callback: (result: IReachable)=>void, timeout=1500): IImageChecker {
+const ImageChecker = function(address: string, callback: (result: IReachable)=>void, timeout=5000): IImageChecker {
     function _updateResult(imageChecker: IImageChecker, newStatus: PINGSTATUS, error?: Error) {
         if ( !imageChecker.isRunning() ) { return; }
         if ( !imageChecker.callback ) { return; }
