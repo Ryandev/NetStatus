@@ -12,7 +12,7 @@ DOCKERDIR=$SCRIPTDIR/..
 #Requires experimental flag of Docker daemon enabled for buildx to work
 echo "Building docker image"
 
-docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $IMGNAME:$TAGVER --push $DOCKERDIR
+docker buildx build --output=type=image --platform linux/amd64,linux/arm64,linux/arm/v7 -t $IMGNAME:$TAGVER --push $DOCKERDIR
 EXITSTATUS=$?
 
 if [[ $EXITSTATUS -ne 0 ]]; then
