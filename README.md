@@ -31,7 +31,7 @@ Device setup instructions for Raspberry PI, (flasing image, package installs, au
 > When the WiFi icon is showing, a new speed-test is underway, display will be updated once all results are in
 
 ## Run
-Either load url (https://netstatus.ryanpowell.dev)[https://netstatus.ryanpowell.dev] in WebBrowser or deploy locally with Docker below & open http://localhost:80 
+Either load url [https://netstatus.ryanpowell.dev](https://netstatus.ryanpowell.dev) in WebBrowser or deploy locally with Docker below & open http://localhost:80 
 
 ### Docker Deployment
 Run below (supports amd64, arm64 & arv7, aka PC, Pi4, Pi3)
@@ -60,6 +60,7 @@ Set speed test interval to 10mins, ping checks every 1min, & latency warn thresh
 ```
 sudo docker run --name netspeed -d --restart=always -p 80:80 --env REACT_APP_TESTINTERVAL=600 --env REACT_APP_PINGINTERVAL=60 --env REACT_APP_LATENCYWARN=20 ryandev/netspeed:arm64
 ```
+
 
 ### Attributions
 - [Librespeed - SpeedTest](github.com/librespeed/speedtest)
