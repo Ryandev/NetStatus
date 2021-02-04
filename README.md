@@ -25,9 +25,10 @@ Device setup instructions for Raspberry PI, (flasing image, package installs, au
 
 ##### Latency/Upload error status & download warning status
 ![Dashboard status slow](https://raw.githubusercontent.com/Ryandev/NetStatus/master/documentation/dashslow.png "Dashboard status slow")
-*Bottom left is the time elapsed since the last speed test, 
-bottom right is your public IP address
-When the WiFi icon is showing, a new speed-test is underway, display will be updated once all results are in
+
+> Bottom row: left is the time elapsed since the last speed test. Right is your public IP address
+>
+> When the WiFi icon is showing, a new speed-test is underway, display will be updated once all results are in
 
 ## Run
 Either load url (https://netstatus.ryanpowell.dev)[https://netstatus.ryanpowell.dev] in WebBrowser or deploy locally with Docker below & open http://localhost:80 
