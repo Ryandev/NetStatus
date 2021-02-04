@@ -5,8 +5,8 @@ import { IGlobalState } from "../state/interface";
 
 const mapStateToProps = (state: IGlobalState, props: ILoadingProps): ILoadingProps => {
     return {
-        title: 'LOADING',
-        subtitle: "",
+        title: 'FETCHING NETWORK SPEED',
+        subtitle: "(delay upto 1min)",
         iconName: "spinner",
     };
 }

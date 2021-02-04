@@ -6,16 +6,16 @@ import styling from './Container.style';
 import { ILoadingProps } from './Container.if';
 
 
-const iconForStatus = (statusVal: "exclamation"|"spinner", log: ILogger = IOC().logger()): JSX.Element => {
+const iconForStatus = (statusVal: "exclamation"|"spinner", style: React.CSSProperties = {}, log: ILogger = IOC().logger()): JSX.Element => {
     let elem = Icon.ExclamationTriangle();
 
     switch (statusVal) {
         case "exclamation":
-            elem = Icon.ExclamationTriangle();
+            elem = Icon.ExclamationTriangle(style);
             break;
 
         case "spinner":
-            elem = Icon.Spinner();
+            elem = Icon.Spinner(style);
             break;
 
         default:
@@ -34,22 +34,22 @@ function Container(props: ILoadingProps) {
             <div style={styling('Row', props)} className="row">
                 <div style={styling('Col', props)} className="col-xs-12 center-block text-center">
                     <p style={styling('P', props)}>
-                        {props.title}
+                        <span style={styling('SpanTitle',props)}>{props.title}</span>
                     </p>
-                </div>
-            </div>
-
-            <div style={styling('Row', props)} className="row">
-                <div style={styling('Col', props)} className="col-xs-12 center-block text-center">
-                    {iconForStatus(props.iconName)}
                 </div>
             </div>
 
             <div style={styling('Row', props)} className="row">
                 <div style={styling('Col', props)} className="col-xs-12 center-block text-center">
                     <p style={styling('P', props)}>
-                        {props.subtitle}
+                    <span style={styling('SpanSubTitle',props)}>{props.subtitle}</span>
                     </p>
+                </div>
+            </div>
+
+            <div style={styling('Row', props)} className="row">
+                <div style={styling('Col', props)} className="col-xs-12 center-block text-center">
+                    {iconForStatus(props.iconName, styling('Icon', props))}
                 </div>
             </div>
         </div>
