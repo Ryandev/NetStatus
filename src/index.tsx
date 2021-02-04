@@ -64,10 +64,10 @@ providerStore.subscribe(() => {
 	const isShowingDashboard = Router.routes.dashboard.isShowing(history);
 	const isOnline = state.OnlineStatus.isOnline;
 	const isFetchingNetworkSpeed = !( services.networkSpeed.status === IServiceStatus.Idle ); /* it may be uninit'ed at this point, so don't assume == Busy */
-	const hasFetchedSpeedData = (state?.SpeedTest?.dateOfLastTest ?? 0) > 0;
+	const hasFinishedInitialLoading = (state?.SpeedTest?.dateOfLastTest ?? 0) > 0;
 
 	const showOffline = (!isFetchingNetworkSpeed || isShowingDashboard) && !isOnline;
-	const showDashboard = !isFetchingNetworkSpeed && isOnline && hasFetchedSpeedData;
+	const showDashboard = isOnline && hasFinishedInitialLoading;
 
 	if ( showOffline ) {
 		Router.routes.offline.navigate(history);

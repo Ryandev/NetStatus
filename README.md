@@ -31,15 +31,11 @@ bottom right is your ISP name/location*
 Either load url (https://netstatus.ryanpowell.dev)[https://netstatus.ryanpowell.dev] in WebBrowser or deploy locally with Docker below & open http://localhost:80 
 
 ### Docker Deployment
-Local deployment also supported on Arm64 & PC Architectures below
-
-*Arm64 (Raspberry Pi 4)* ``` sudo docker run --name netspeed -d --restart=always -p 80:80  ryandev/netspeed:arm64```
-Now go to http://localhost to view 
-
-*AMD64 (PC)* ```sudo docker run --name netspeed -d --restart=always -p 80:80 ryandev/netspeed:latest```
+Run below (supports amd64, arm64 & arv7, aka PC, Pi4, Pi3)
+```sudo docker run --name netspeed -d --restart=always -p 80:80  ryandev/netspeed```
 
 
-#### Configurables
+#### Docker Configurables
 | Name                                      | Description                                                                                                                                                                                   | Environment name               | Value units | Default value           |
 |-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|-------------|-------------------------|
 | Frequnecy of ping checks                  | How frequently to fetch a favicon to check if the network is there.  This is needed as `navigator.isOnline` implmentation varies across browsers                                              | REACT_APP_PINGINTERVAL         | Seconds     | 15                      |
