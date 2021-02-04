@@ -1,5 +1,6 @@
 # NetStatus
-NetStatus is a dashboard WebUI to track internet connectivity
+NetStatus is designed as an always-on dashboard WebUI to track internet connectivity
+It will periodically recheck its connection & provide a live view of status, online or off. speed up/down & latency
 
 Live: [http://netstatus.ryanpowell.dev](http://netstatus.ryanpowell.dev)
 
@@ -12,7 +13,7 @@ Device setup instructions for Raspberry PI, (flasing image, package installs, au
 - Periodic netspeed speed checks (latency, jitter, upload/download speed)
 - Configurable
 - Easy to run (Docker)
-- Designed to work on any landscape screensize, optimized for small screens
+- Optimized for small screens, however designed to work on any screensize or orientation, 
 
 ## Screenshots
 
@@ -25,7 +26,8 @@ Device setup instructions for Raspberry PI, (flasing image, package installs, au
 ##### Latency/Upload error status & download warning status
 ![Dashboard status slow](https://raw.githubusercontent.com/Ryandev/NetStatus/master/documentation/dashslow.png "Dashboard status slow")
 *Bottom left is the time elapsed since the last speed test, 
-bottom right is your ISP name/location*
+bottom right is your public IP address
+When the WiFi icon is showing, a new speed-test is underway, display will be updated once all results are in
 
 ## Run
 Either load url (https://netstatus.ryanpowell.dev)[https://netstatus.ryanpowell.dev] in WebBrowser or deploy locally with Docker below & open http://localhost:80 
@@ -52,17 +54,17 @@ Run below (supports amd64, arm64 & arv7, aka PC, Pi4, Pi3)
 | Jitter error threshold                    |                                                                                                                                                                                               | REACT_APP_JITTERERROR          | ms          | 100                     |
 All configurables can be found under src/config/*.ts
 
-#### Example
+#### Docker Deployment Example
 Set speed test interval to 10mins, ping checks every 1min, & latency warn threshold to 20ms
 ```
 sudo docker run --name netspeed -d --restart=always -p 80:80 --env REACT_APP_TESTINTERVAL=600 --env REACT_APP_PINGINTERVAL=60 --env REACT_APP_LATENCYWARN=20 ryandev/netspeed:arm64
 ```
 
 ### Attributions
-- [Librespeed](github.com/librespeed/speedtest)
-- [FontAwesome](fontawesome.com)
-- [Bootstrap](getbootstrap.com)
-- [Inconsolata - Google fonts](https://fonts.google.com/specimen/Inconsolata?query=consol&preview.text=NetSpeed&preview.text_type=custom)
+- [Librespeed - SpeedTest](github.com/librespeed/speedtest)
+- [FontAwesome - Iconography](fontawesome.com)
+- [Bootstrap - HTML Layout](getbootstrap.com)
+- [Inconsolata, Google fonts - Typography](https://fonts.google.com/specimen/Inconsolata?query=consol&preview.text=NetSpeed&preview.text_type=custom)
 
 
 License
