@@ -6,14 +6,15 @@ const styleContainer: React.CSSProperties = {
     width: '100%',
     marginLeft: '0px',
     marginRight: '0px',
+    marginTop: '-2vmin',
     borderRadius: '0px',
     padding: '0px',
     height: '14vmin',
-    fontSize: '10vmin',
+    fontSize: '9vmin',
     color: '#fff',
     overflow: 'hidden',
-    paddingLeft: '4vw',
-    paddingRight: '4vw',
+    paddingLeft: '5vw',
+    paddingRight: '3vw',
     letterSpacing: '-1px',
 };
 
@@ -40,10 +41,20 @@ const styleColRight: React.CSSProperties = {
     justifyContent: 'flex-end',
 };
 
+const styleSpanLeft: React.CSSProperties = {
+    marginLeft: '2vmin',
+}
+
+const styleSpanRight: React.CSSProperties = {
+    marginRight: '2vmin',
+}
+
 const style = {
     container: styleContainer,
     colLeft: styleColLeft,
     colRight: styleColRight,
+    spanLeft: styleSpanLeft,
+    spanRight: styleSpanRight,
 }
 
 export default style;

@@ -56,10 +56,11 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
     
     return {
         statusItems: [latencyProps, jitterProps, dlProps, ulProps],
-        showInfoIcon: isTestRunning,
-        infoIcon: "wifi",
+        showInfoIcon: true,
+        infoIcon: isTestRunning ? "wifi" : "clock",
         infoTextLeft: infoTextLeft,
         infoTextRight: clientIp,
+        infoIconRight: "map-marker",
         refreshPageInterval: Math.max(1, config.view.refreshPageInterval)
     
     };

@@ -32,6 +32,7 @@ function Container(props: IDashboardProps): JSX.Element {
     const infoProps: IAdditionalInfoRowProps = {
         showIconLeft: props.showInfoIcon,
         iconLeft: props.infoIcon,
+        iconRight: props.infoIconRight,
         textLeft: props.infoTextLeft,
         textRight: props.infoTextRight,    
     };

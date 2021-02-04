@@ -15,8 +15,9 @@ export interface IDashboardStatusItem {
 export interface IDashboardProps {
     statusItems: IDashboardStatusItem[];
     showInfoIcon: boolean;
-    infoIcon: "wifi" | "spinner";
+    infoIcon: "wifi" | "spinner" | "clock";
     infoTextLeft: string;
     infoTextRight: string;
+    infoIconRight: "map-marker";
     refreshPageInterval: number;
 }
