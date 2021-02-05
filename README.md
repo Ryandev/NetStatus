@@ -31,7 +31,10 @@ Device setup instructions for Raspberry PI, (flasing image, package installs, au
 > When the WiFi icon is showing, a new speed-test is underway, display will be updated once all results are in
 
 ## Run
-Either load url [https://netstatus.ryanpowell.dev](https://netstatus.ryanpowell.dev) in WebBrowser or deploy locally with Docker below & open http://localhost:80 
+Options:
+1. Load url [https://netstatus.ryanpowell.dev](https://netstatus.ryanpowell.dev) in Browser
+2. Build project & serve static files (Download project, run `npm run build` & serve contents from ./build)
+3. Deploy locally with Docker below & open http://localhost:80 
 
 ### Docker Deployment
 Run below (supports amd64, arm64 & arv7, aka PC, Pi4, Pi3)
