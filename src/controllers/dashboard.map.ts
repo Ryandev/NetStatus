@@ -29,7 +29,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
 
     const ulProps: IDashboardStatusItem = {
         name : "UPLOAD",
-        value : Math.round(state?.SpeedTest?.uploadSpeed ?? -1) + "mbit/s",
+        value : Math.round(state?.SpeedTest?.uploadSpeed ?? -1) + "Mbps",
         status : state?.SpeedTest?.uploadSpeed <= config.threshold.upload.error
             ? DashboardStatusValue.Bad
             : state?.SpeedTest?.uploadSpeed < config.threshold.upload.warning
@@ -39,7 +39,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
 
     const dlProps: IDashboardStatusItem = {
         name : "DOWNLOAD",
-        value : Math.round(state?.SpeedTest?.downloadSpeed ?? -1) + "mbit/s",
+        value : Math.round(state?.SpeedTest?.downloadSpeed ?? -1) + "Mbps",
         status : state?.SpeedTest?.downloadSpeed < config.threshold.download.error
             ? DashboardStatusValue.Bad
             : state?.SpeedTest?.downloadSpeed < config.threshold.download.warning

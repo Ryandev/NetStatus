@@ -75,7 +75,7 @@ const DEFAULTS: Record<string, Record<string, React.CSSProperties>> = {
             position: 'relative',
             width: '40vw',
             fontSize: '10vmin',
-            lineHeight: '7vmin',
+            lineHeight: '10vmin',
             fontFamily: 'Inconsolata',
             paddingLeft: '2%',
             wordWrap: 'break-word',
