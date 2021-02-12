@@ -35,6 +35,7 @@ Options:
 1. Load url [https://netstatus.ryanpowell.dev](https://netstatus.ryanpowell.dev) in Browser
 2. Build project & serve static files (Download project, run `npm run build` & serve contents from ./build)
 3. Deploy locally with Docker below & open http://localhost:80 
+4. [Deploy with balena](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/Ryandev/NetStatus) (more details below)
 
 ### Docker Deployment
 Run below (supports amd64, arm64 & arv7, aka PC, Pi4, Pi3)
@@ -63,6 +64,17 @@ Set speed test interval to 10mins, ping checks every 1min, & latency warn thresh
 ```
 sudo docker run --name netspeed -d --restart=always -p 80:80 --env REACT_APP_TESTINTERVAL=600 --env REACT_APP_PINGINTERVAL=60 --env REACT_APP_LATENCYWARN=20 ryandev/netspeed:arm64
 ```
+
+#### Balena Deployment Example
+You can use balenaCloud to deploy this project to Raspberry Pis and other single board computers in just a few clicks, avoiding the need to manually configure any software packages.
+
+[![](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/Ryandev/NetStatus)
+
+**or, manually:**
+
+* Install the [balena CLI tools](https://github.com/balena-io/balena-cli/blob/master/INSTALL.md)
+* Login with `balena login`
+* Download this project and from the project directory run `balena push <appName>` where `<appName>` is the name you gave your balenaCloud application in the first step
 
 
 ### Attributions
