@@ -1,0 +1,22 @@
+name: "NetStatus"
+description: "Internet speed & offline status monitor. Upload, download, ping, latency dashboard display"
+type: "sw.application"
+assets:
+  repository:
+    type: "blob.asset"
+    data:
+      url: "https://github.com/Ryandev/NetStatus"
+  logo:
+    type: "blob.asset"
+    data:
+      url: "https://raw.githubusercontent.com/Ryandev/NetStatus/master/public/logo512.png"
+data:  
+  defaultDeviceType: "raspberrypi3"
+  supportedDeviceTypes:
+    - "raspberrypi4-64"
+    - "fincm3"
+    - "raspberrypi3"
+    - "raspberrypi3-64"
+    - "intel-nuc"
+    - "genericx86-64-ext"
+    - "raspberrypi400-64"
