@@ -1,0 +1,16 @@
+version: '2'
+services:
+  netspeed:
+    image: ryandev/netspeed
+    ports:
+      - "80"
+    restart: always
+  browser:
+    image: balenablocks/browser
+    network_mode: host
+    privileged: true
+    environment:
+        - 'KIOSK=1'
+  fbcp:
+    image: balenablocks/fbcp
+    privileged: true
