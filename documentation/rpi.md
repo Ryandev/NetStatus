@@ -80,6 +80,7 @@ sudo systemctl enable docker
 ### 6. Setup browser on startup gnome
 ```
 echo 'Creating browser.sh auto start on boot script';
+mkdir ~/scripts
 mkdir ~/.config/autostart
 echo '
 [Desktop Entry]
@@ -94,22 +95,21 @@ Save the following to ~/scripts/browser.sh
 ```
 URL="http://localhost"
 
-# stop the Raspberry Pi’s display power management system from kicking in and blanking out the screen
+# Stop the Raspberry Pi’s display power management system from kicking in and blanking out the screen
 xset s noblank
 xset s off
 xset -dpms
 
-#hide cursor
+# Hide cursor
 unclutter -idle 0.5 -root &
 
 sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/Default/Preferences
 sed -i 's/"exit_type":"Crashed"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
-# If you dont need remote debugging, you can remove those arguments
-/usr/bin/chromium-browser --check-for-update-interval=31536000 --remote-debugging-address=192.168.1.18 --remote-debugging-port=9222 --no-first-run  --start-fullscreen --start-maximized --disable-notifications --noerrdialogs --disable-infobars --load-extension=~/.config/chromium/extensions/crashautoreload.crx --window-size=480,320 --force-device-scale-factor=1 --app=$URL | at now + 10s
+/usr/bin/chromium-browser --check-for-update-interval=31536000 --no-first-run  --start-fullscreen --start-maximized --disable-notifications --noerrdialogs --disable-infobars --load-extension=~/.config/chromium/extensions/crashautoreload.crx --window-size=480,320 --force-device-scale-factor=1 --app=$URL | at now + 10s
 ```
 then run `chmod +x ~/scripts/browser.sh`
 
-### Setup browser to auto-restart on crash
+### 7. Setup browser to auto-restart on crash
 ```
 echo 'Download & install oh-no-you-didnt https://chrome.google.com/webstore/detail/oh-no-you-didnt/acdablfhjbhkjbcifldncdkmlophfgda/related?hl=en' &&
 echo 'This will reload on "Aw, Snap!" messages automatically' &&
@@ -118,9 +118,9 @@ curl -H 'Host: clients2.google.com' -H 'sec-fetch-site: none' -H 'sec-fetch-mode
 ```
 
 
-### Finally setup docker to run Netspeed
+### 8. Setup docker to run Netspeed
 ```
-sudo docker run --name netspeed -d --restart=always -p 80:80 ryandev/netspeed:arm64
+sudo docker run --name netspeed -d --restart=always -p 80:80 ryandev/netspeed
 ```
 
 Finally Reboot :)
