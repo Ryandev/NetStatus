@@ -20,4 +20,4 @@ data:
     - "intel-nuc"
     - "genericx86-64-ext"
     - "raspberrypi400-64"
-    -"orange-pi-zero"
+    - "orange-pi-zero"
