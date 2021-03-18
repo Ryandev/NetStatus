@@ -27,8 +27,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "setup": "cp git_modules/speedtest/speedtest.js public/speedtest.js; cp git_modules/speedtest/speedtest_worker.js public/speedtest_worker.js;",
+    "start": "npm run setup; react-scripts start",
+    "build": "npm run setup; react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
