@@ -23,7 +23,7 @@ const DEFAULTS = {
 };
 
 const exports = (env: IEnv = IOC().env()) => {
-    return {
+    const val = {
         upload: {
             warning: env.getInt('REACT_APP_UPLOADWARN', DEFAULTS.UPLOAD.WARNING),
             error: env.getInt('REACT_APP_UPLOADERROR', DEFAULTS.UPLOAD.ERROR)
@@ -40,7 +40,8 @@ const exports = (env: IEnv = IOC().env()) => {
             warning: env.getInt('REACT_APP_JITTERWARN', DEFAULTS.JITTER.WARNING),
             error: env.getInt('REACT_APP_JITTERERROR', DEFAULTS.JITTER.ERROR)
         }
-    }
+    };
+    return val;
 };
 
 export default exports;

@@ -1,50 +1,65 @@
 
-const getInt = (envName: string, defaultValue=-1): number => {
-    const envVal: any = process.env[envName];
-    let returnValue = defaultValue;
+const getProcessVal = (envName: string): any|null => {
+    const envVal = process.env[envName];
+    return envVal;
+};
 
-    if ( ( envVal !== undefined ) &&
-         ( typeof envVal === 'string' ) ) {
-        returnValue = parseInt(envVal);
+const getWindowVal = (envName: string): any|null => {
+    const envVal = (window as any)?.env?.[envName];
+    return envVal;
+};
+
+const getInt = (envName: string, defaultValue=-1): number => {
+    const envVal = 
+        getProcessVal(envName) ?? 
+        getWindowVal(envName);
+    let retVal = defaultValue
+
+    if ( envVal !== undefined ) {
+        retVal = parseInt(envVal);
     }
 
-    return returnValue;
+    return retVal;
 }
 
 const getBool = (envName: string, defaultValue=false): boolean => {
-    const envVal = process.env[envName];
-    let returnValue = defaultValue;
+    const envVal = 
+        getProcessVal(envName) ?? 
+        getWindowVal(envName)
+    let retVal = defaultValue;
 
-    if ( ( envVal !== undefined ) &&
-         ( typeof envVal === 'boolean') ) {
-        returnValue = envVal;
+    if ( envVal !== undefined ) {
+        retVal = Boolean(envVal);
     }
 
-    return returnValue;
+    return retVal;
 }
 
 const getObject = (envName: string, defaultValue={}): object => {
-    const envVal = process.env[envName];
-    let returnValue = defaultValue;
+    const envVal = 
+        getProcessVal(envName) ?? 
+        getWindowVal(envName);
+    let retVal = defaultValue;
 
-    if ( ( envVal !== undefined) && 
-         ( typeof envVal === 'object' ) ) {
-        returnValue = JSON.parse(envVal);
+    if ( envVal !== undefined ) {
+        retVal = JSON.parse(envVal);
     }
 
-    return returnValue;
+    return retVal;
 }
 
 const getArray = <T>(envName: string, defaultValue: Array<T> = []): Array<T> => {
-    const envVal = process.env[envName];
-    let returnValue = defaultValue;
+    const envVal = 
+        getProcessVal(envName) ?? 
+        getWindowVal(envName);
+    let retVal = defaultValue;
 
     if ( ( envVal !== undefined) && 
          ( typeof envVal === 'object' ) ) {
-        returnValue = JSON.parse(envVal);
+        retVal = JSON.parse(envVal);
     }
 
-    return returnValue;
+    return retVal;
 }
 
 const exports = {
