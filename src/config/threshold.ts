@@ -19,7 +19,7 @@ const DEFAULTS = {
     JITTER: {
         WARNING: 50,
         ERROR: 100
-    }
+    },
 };
 
 const exports = (env: IEnv = IOC().env()) => {
@@ -39,7 +39,7 @@ const exports = (env: IEnv = IOC().env()) => {
         jitter: {
             warning: env.getInt('REACT_APP_JITTERWARN', DEFAULTS.JITTER.WARNING),
             error: env.getInt('REACT_APP_JITTERERROR', DEFAULTS.JITTER.ERROR)
-        }
+        },
     };
     return val;
 };
