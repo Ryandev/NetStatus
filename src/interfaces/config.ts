@@ -47,7 +47,7 @@ export interface IThreshold {
     jitter: {
         warning: number;
         error: number;
-    }
+    },
 }
 
 export interface IView {

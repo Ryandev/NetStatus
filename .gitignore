@@ -4,3 +4,7 @@ node_modules
 .eslintcache
 debug.log
 build
+
+public/speedtest.js
+public/speedtest_worker.js 
+
