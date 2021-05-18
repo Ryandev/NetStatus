@@ -12,7 +12,7 @@ COPY scripts/dockerloadenv.sh /dockerloadenv.sh
 
 
 # Install deps
-RUN npm ci --silent
+RUN npm ci
 
 # build website
 RUN npm run build
