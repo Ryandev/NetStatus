@@ -10,6 +10,8 @@ COPY package.json ./
 COPY package-lock.json ./
 COPY scripts/dockerloadenv.sh /dockerloadenv.sh
 
+# Need to set path to prevent core-js timeout on buildx builds (https://stackoverflow.com/questions/60486006/unable-to-create-a-new-project-with-create-react-app)
+RUN npm config set script-shell $(which sh)
 
 # Install deps
 RUN npm ci
